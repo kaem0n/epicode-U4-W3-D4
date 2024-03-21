@@ -12,17 +12,17 @@ public abstract class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
-    private long id;
-    private String title;
-    private LocalDate date;
-    private String description;
+    protected long id;
+    protected String title;
+    protected LocalDate date;
+    protected String description;
     @Enumerated(EnumType.STRING)
-    private EventType type;
+    protected EventType type;
     @Column(name = "max_participant_capacity")
-    private int maxParticipantCapacity;
+    protected int maxParticipantCapacity;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private Location location;
+    protected Location location;
 
     public Event(){}
 

@@ -1,14 +1,18 @@
 package kaem0n.entities;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 import kaem0n.enums.EventType;
 
 import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("soccer_games")
+@Table( name = "soccer_games")
+@NamedQuery(name = "homeWinners", query= "SELECT sg.winner FROM SoccerGame sg WHERE winner = homeTeam")
+@NamedQuery(name = "guestWinners", query= "SELECT sg.winner FROM SoccerGame sg WHERE winner = guestTeam")
 public class SoccerGame extends Event {
     @Column(name = "home_team")
     private String homeTeam;
@@ -75,9 +79,15 @@ public class SoccerGame extends Event {
     @Override
     public String toString() {
         return "SoccerGame{" +
-                "homeTeam='" + homeTeam + '\'' +
+                "id=" + super.id +
+                ", title='" + super.title + '\'' +
+                ", date=" + super.date +
+                ", description='" + super.description + '\'' +
+                ", type=" + super.type +
+                ", maxParticipantCapacity=" + super.maxParticipantCapacity +
+                ", location=" + super.location +
+                ", homeTeam='" + homeTeam + '\'' +
                 ", guestTeam='" + guestTeam + '\'' +
-                ", winner='" + winner + '\'' +
                 ", homeTeamScore=" + homeTeamScore +
                 ", guestTeamScore=" + guestTeamScore +
                 '}';

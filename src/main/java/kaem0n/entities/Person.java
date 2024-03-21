@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "persons")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

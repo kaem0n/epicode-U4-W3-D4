@@ -1,46 +1,54 @@
 package kaem0n.entities;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import kaem0n.enums.EventType;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("athletics_competitions")
+@Table(name = "athletics_competitions")
 public class AthleticsCompetition extends Event{
-    private List<Person> athletes;
-    private Person winner;
+    @OneToMany(mappedBy = "competition")
+    private List<Athlete> athletes;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Athlete winner;
 
     public AthleticsCompetition() {}
 
-    public AthleticsCompetition(String title, LocalDate date, String description, EventType type, int maxParticipantCapacity, Location location, List<Person> athletes, Person winner) {
+    public AthleticsCompetition(String title, LocalDate date, String description, EventType type, int maxParticipantCapacity, Location location) {
         super(title, date, description, type, maxParticipantCapacity, location);
-        this.athletes = athletes;
         this.winner = null;
     }
 
-    public List<Person> getAthletes() {
+    public List<Athlete> getAthletes() {
         return athletes;
     }
 
-    public void setAthletes(List<Person> athletes) {
+    public void setAthletes(List<Athlete> athletes) {
         this.athletes = athletes;
     }
 
-    public Person getWinner() {
+    public Athlete getWinner() {
         return winner;
     }
 
-    public void setWinner(Person winner) {
+    public void setWinner(Athlete winner) {
         this.winner = winner;
     }
 
     @Override
     public String toString() {
         return "AthleticsCompetition{" +
-                "athletes=" + athletes +
+                "id=" + super.id +
+                ", title='" + super.title + '\'' +
+                ", date=" + super.date +
+                ", description='" + super.description + '\'' +
+                ", type=" + super.type +
+                ", maxParticipantCapacity=" + super.maxParticipantCapacity +
+                ", location=" + super.location +
+                ", athletes=" + athletes +
                 ", winner=" + winner +
                 '}';
     }

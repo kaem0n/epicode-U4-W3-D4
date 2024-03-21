@@ -1,16 +1,13 @@
 package kaem0n.entities;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import kaem0n.enums.EventType;
 import kaem0n.enums.MusicGenre;
 
 import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("concerts")
+@Table(name = "concerts")
 public class Concert extends Event {
     @Enumerated(EnumType.STRING)
     private MusicGenre genre;
@@ -44,7 +41,14 @@ public class Concert extends Event {
     @Override
     public String toString() {
         return "Concert{" +
-                "genre=" + genre +
+                "id=" + super.id +
+                ", title='" + super.title + '\'' +
+                ", date=" + super.date +
+                ", description='" + super.description + '\'' +
+                ", type=" + super.type +
+                ", maxParticipantCapacity=" + super.maxParticipantCapacity +
+                ", location=" + super.location +
+                ", genre=" + genre +
                 ", streaming=" + streaming +
                 '}';
     }
