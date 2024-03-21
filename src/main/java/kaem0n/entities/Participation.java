@@ -1,6 +1,7 @@
 package kaem0n.entities;
 
 import jakarta.persistence.*;
+import kaem0n.enums.ParticipationState;
 
 @Entity
 @Table(name = "participations")

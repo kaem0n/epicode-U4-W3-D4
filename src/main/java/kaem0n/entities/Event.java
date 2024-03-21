@@ -1,12 +1,14 @@
 package kaem0n.entities;
 
 import jakarta.persistence.*;
+import kaem0n.enums.EventType;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
-public class Event {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")

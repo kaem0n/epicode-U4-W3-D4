@@ -1,6 +1,7 @@
 package kaem0n.entities;
 
 import jakarta.persistence.*;
+import kaem0n.enums.Gender;
 
 import java.time.LocalDate;
 import java.util.List;

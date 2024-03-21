@@ -37,4 +37,8 @@ public class EventDAO {
         tr.commit();
         System.out.println("Event deleted successfully!");
     }
+
+//    public Event getStreamedConcerts(boolean streaming) {
+//
+//    }
 }
